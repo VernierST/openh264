@@ -249,7 +249,11 @@ int SemWait (SWelsDecSemphore* s, int32_t timeout) {
 #if defined(__APPLE__)
         rc = pthread_cond_timedwait (& (s->e), & (s->m), &ts);
 #else
+      #if WASM_NO_PTHREADS
+        rc = 1;
+      #else
         rc = sem_timedwait (s->e, &ts);
+      #endif
         if (rc != 0) rc = errno;
 #endif
         if (rc != EINTR) {

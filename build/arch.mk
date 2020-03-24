@@ -1,6 +1,13 @@
 #for x86
 HAVE_AVX2 := Yes
 
+# Emscripten
+ifeq (wasm, $(ARCH))
+HAVE_AVX2 :=
+USE_ASM :=
+X86_ASM :=
+endif
+
 ifneq ($(filter %86 x86_64, $(ARCH)),)
 include $(SRC_PATH)build/x86-common.mk
 ifeq ($(USE_ASM), Yes)

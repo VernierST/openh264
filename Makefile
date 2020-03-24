@@ -21,7 +21,9 @@ CFLAGS_OPT=-O3
 CFLAGS_DEBUG=-g
 BUILDTYPE=Release
 V=Yes
+ifeq ($(PREFIX),"")
 PREFIX=/usr/local
+endif
 SHARED=-shared
 OBJ=o
 DESTDIR=
@@ -49,6 +51,13 @@ HAVE_GTEST=No
 else
 HAVE_GTEST=Yes
 endif
+
+# Emscripten/WASM
+ifneq ($(EMSDK), "")
+OS = emscripten
+ARCH = wasm
+endif
+
 
 # Configurations
 ifeq ($(BUILDTYPE), Release)

@@ -233,10 +233,14 @@ WELS_THREAD_ERROR_CODE    WelsThreadCreate (WELS_THREAD_HANDLE* thread,  LPWELS_
   if (err)
     return err;
 #if !defined(__ANDROID__) && !defined(__Fuchsia__)
+  #if WASM_NO_PTHREADS
+     err = WELS_THREAD_ERROR_GENERAL;
+  #else
   err = pthread_attr_setscope (&at, PTHREAD_SCOPE_SYSTEM);
   if (err)
     return err;
   err = pthread_attr_setschedpolicy (&at, SCHED_FIFO);
+  #endif
   if (err)
     return err;
 #endif
