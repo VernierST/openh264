@@ -1,0 +1,38 @@
+version: 2.1
+
+orbs:
+  vst: vst/vst-native-orb@3.0.0
+
+.current_filters: &current_filters
+  branches:
+    only:
+      - main
+      - /^pr-ci\/.+/
+
+.package-name: &package-name openh264
+.vcs-fingerprint: &vcs-fingerprint 16:ff:a4:9b:b7:9c:aa:a6:24:58:eb:e9:bb:bb:ca:b9
+
+jobs:
+  linux-build:
+    executor: vst/linux
+    steps:
+      - vst/setup:
+          vcs-fingerprint: *vcs-fingerprint
+      - vst/setup-linux
+      - vst/install-conan-and-configure
+      - run: |
+          channel=${CIRCLE_BRANCH//[_+=.,\/]/-}
+          conan create -pr emscripten -s "build_type=Release" conan "vernierst+vst-libs/${channel}"
+      - run: |
+          channel=${CIRCLE_BRANCH//[_+=.,\/]/-}
+          conan create -pr emscripten -s "build_type=Debug" conan "vernierst+vst-libs/${channel}"
+      - vst/upload:
+          package-name: *package-name
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - linux-build:
+          filters:
+            <<: *current_filters
