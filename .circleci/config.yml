@@ -10,7 +10,7 @@ orbs:
       - /^pr-ci\/.+/
 
 .package-name: &package-name openh264
-.vcs-fingerprint: &vcs-fingerprint 16:ff:a4:9b:b7:9c:aa:a6:24:58:eb:e9:bb:bb:ca:b9
+.vcs-fingerprint: &vcs-fingerprint 50:cd:dd:0b:2a:e7:af:b8:24:b2:00:6d:75:5e:57:1a
 
 jobs:
   linux-build:
