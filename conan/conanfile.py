@@ -2,7 +2,7 @@ from conans import ConanFile, tools
 from conans.errors import ConanInvalidConfiguration
 
 class VstudmConan(ConanFile):
-    python_requires = "vst-conan-helper/0.8@vernierst+vst-libs/main"
+    python_requires = "vst-conan-helper/0.9@vernierst+vst-libs/main"
     python_requires_extend = "vst-conan-helper.VstConanBase"
 
     name = "openh264"
