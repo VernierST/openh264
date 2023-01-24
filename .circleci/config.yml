@@ -35,5 +35,6 @@ workflows:
   build:
     jobs:
       - linux-build:
+          context: orb-publishing
           filters:
             <<: *current_filters
