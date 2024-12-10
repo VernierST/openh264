@@ -8,8 +8,7 @@ CURRENT_VERSION := 2.1.0
 COMPATIBILITY_VERSION := 2.1.0
 SHLDFLAGS :=
 SHARED :=
-CFLAGS += -DWASM_NO_PTHREADS=1
-CFLAGS += -Wall -fPIC -MMD -MP -s USE_PTHREADS=0 -mno-reference-types -mno-bulk-memory
+CFLAGS += -Wall -fPIC -MMD -MP
 ASMFLAGS :=
 
 LDFLAGS += -s SAFE_HEAP=1 \
@@ -17,9 +16,7 @@ LDFLAGS += -s SAFE_HEAP=1 \
 			 -s NO_EXIT_RUNTIME=1 \
 			 -s ALLOW_MEMORY_GROWTH=1 \
 			 -s DEMANGLE_SUPPORT=1 \
-			 -s NO_FILESYSTEM=1 \
-			 -s USE_PTHREADS=0 \
-			 -mno-reference-types -mno-bulk-memory
+			 -s NO_FILESYSTEM=1
 
 ifneq (Release, $(BUILDTYPE))
 	LDFLAGS += -s ASSERTIONS=1
