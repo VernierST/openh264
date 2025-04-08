@@ -16,7 +16,6 @@ LDFLAGS += -s SAFE_HEAP=1 \
 			 -s WASM=1 \
 			 -s NO_EXIT_RUNTIME=1 \
 			 -s ALLOW_MEMORY_GROWTH=1 \
-			 -s DEMANGLE_SUPPORT=1 \
 			 -s NO_FILESYSTEM=1 \
 			 -s USE_PTHREADS=0 \
 			 -mno-reference-types -mno-bulk-memory
