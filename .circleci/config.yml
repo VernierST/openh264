@@ -18,9 +18,9 @@ jobs:
     executor: vst/linux
     steps:
       - vst/setup:
-          vcs-fingerprint: *vcs-fingerprint
-      - vst/setup-linux
-      - vst/install-conan-and-configure
+          vcs_fingerprint: *vcs-fingerprint
+      - vst/setup_linux
+      - vst/install_conan_and_configure
       - run: |
           channel=${CIRCLE_BRANCH//[_+=.,\/]/-}
           conan create -pr emscripten -s "build_type=Release" conan "vernierst+vst-libs/${channel}"
@@ -28,7 +28,7 @@ jobs:
           channel=${CIRCLE_BRANCH//[_+=.,\/]/-}
           conan create -pr emscripten -s "build_type=Debug" conan "vernierst+vst-libs/${channel}"
       - vst/upload:
-          package-name: *package-name
+          package_name: *package-name
 
 workflows:
   version: 2
